@@ -63,8 +63,8 @@ $timeout = new-timespan -Minutes $PollLength
 $sw = [diagnostics.stopwatch]::StartNew()
 
 ## Loop every PollRate (Seconds) until timer reaches PollLength
-$poll = $(while ($sw.elapsed -lt $timeout) {
-    $results = ((Invoke-WebRequest -Uri "http://192.168.0.218/printer/objects/query?&extruder&heater_bed" -Method Get -Headers $headers).Content |convertfrom-json).result.status
+$Pool = $(while ($sw.elapsed -lt $timeout) {
+    $results = ((Invoke-WebRequest -Uri "http://$IPAddress/printer/objects/query?&extruder&heater_bed" -Method Get -Headers $headers).Content |convertfrom-json).result.status
 
     [PSCustomObject]@{
     heater_bed      = $results.extruder.temperature
