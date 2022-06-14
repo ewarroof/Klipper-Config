@@ -67,8 +67,8 @@ $Pool = $(while ($sw.elapsed -lt $timeout) {
     $results = ((Invoke-WebRequest -Uri "http://$IPAddress/printer/objects/query?&extruder&heater_bed" -Method Get -Headers $headers).Content |convertfrom-json).result.status
 
     [PSCustomObject]@{
-    heater_bed      = $results.extruder.temperature
-    Extruder        = $results.heater_bed.temperature
+    heater_bed      = $results.heater_bed.temperature
+    Extruder        = $results.extruder.temperature
     }
 
     Start-Sleep $PollRate
